@@ -1,0 +1,33 @@
+package main
+
+import (
+	"fmt"
+	"gin-blog/pkg/setting"
+	"gin-blog/routers"
+	"log"
+	"syscall"
+
+	"github.com/fvbock/endless"
+)
+
+func main() {
+	endless.DefaultReadTimeOut = setting.ReadTimeout
+	endless.DefaultWriteTimeOut = setting.WriteTimeout
+	endless.DefaultMaxHeaderBytes = 1 << 20
+	endPoint := fmt.Sprintf(":%d", setting.HTTPPort)
+
+	// endless.NewServer 返回一个初始化的 endlessServer 对象，在 BeforeBegin 时输出当前进程的 pid，
+	// 调用 ListenAndServe 将实际“启动”服务
+	server := endless.NewServer(endPoint, routers.InitRouter())
+	server.BeforeBegin = func(add string) {
+		log.Printf("Actual pid is %d", syscall.Getpid())
+	}
+
+	err := server.ListenAndServe()
+	if err != nil {
+		log.Printf("Server err: %v", err)
+	}
+}
+
+// endless 热更新是采取创建子进程后，将原进程退出的方式，这点不符合守护进程的要求
+// Golang >= 1.8，也可以考虑使用 http.Server 的 Shutdown 方法

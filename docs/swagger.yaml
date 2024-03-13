@@ -1,0 +1,33 @@
+info:
+  contact: {}
+paths:
+  /api/v1/articles/{id}:
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Get a single article
+  /auth:
+    get:
+      parameters:
+      - description: userName
+        in: query
+        name: username
+        required: true
+        type: string
+      - description: password
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get Auth
+swagger: "2.0"
