@@ -1,10 +1,10 @@
 package routers
 
 import (
-	"gin-blog/middleware/jwt"
-	"gin-blog/pkg/setting"
-	"gin-blog/routers/api"
-	v1 "gin-blog/routers/api/v1"
+	"github.com/l077j/gin-blog/middleware/jwt"
+	"github.com/l077j/gin-blog/pkg/setting"
+	"github.com/l077j/gin-blog/routers/api"
+	v1 "github.com/l077j/gin-blog/routers/api/v1"
 
 	"github.com/gin-gonic/gin"
 )

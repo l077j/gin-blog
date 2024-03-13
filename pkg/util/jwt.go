@@ -1,8 +1,9 @@
 package util
 
 import (
-	"gin-blog/pkg/setting"
 	"time"
+
+	"github.com/l077j/gin-blog/pkg/setting"
 
 	jwt "github.com/dgrijalva/jwt-go"
 )

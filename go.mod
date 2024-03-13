@@ -1,4 +1,4 @@
-module gin-blog
+module github.com/l077j/gin-blog
 
 go 1.22.0
 
